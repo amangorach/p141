@@ -16,15 +16,15 @@ def scrape():
     for i in range(0,10):
         print(f'Scrapping page {i+1} ...' )
         soup = BeautifulSoup(browser.page_source,"html.parser")
-        for ul_tag in soup.find_all("ul",attrs = {"class","exoplanet"}):
-            li_tags =ul_tag.find_all("li")
+        for tr_tag in soup.find_all("tr",attrs = {"tr"}):
+            td_tags =tr_tag.find_all("td")
             temp_list = []
-            for index, li_tag in enumerate(li_tags):
+            for index, td_tag in enumerate(td_tags):
                 if index == 0:
-                    temp_list.append(li_tag.find_all("a")[0].contents[0])
+                    temp_list.append(td_tag.find_all("a")[0].contents[0])
                 else:
                     try:
-                        temp_list.append(li_tag.contents[0])
+                        temp_list.append(td_tag.contents[0])
                     except:
                         temp_list.append("")
             star_data.append(temp_list)
